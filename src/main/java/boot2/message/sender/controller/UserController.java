@@ -1,7 +1,7 @@
 package boot2.message.sender.controller;
 
 import boot2.message.sender.dto.PostUser;
-import boot2.message.sender.dto.User;
+import boot2.message.sender.dto.PostUserResponse;
 import boot2.message.sender.service.UserService;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -27,7 +27,7 @@ public class UserController {
             produces = MediaType.APPLICATION_JSON_UTF8_VALUE,
             consumes = MediaType.APPLICATION_JSON_UTF8_VALUE
     )
-    public User postUser(@RequestBody PostUser insert) {
+    public PostUserResponse postUser(@RequestBody PostUser insert) {
         return userService.saveUser(insert);
     }
 

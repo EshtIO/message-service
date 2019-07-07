@@ -38,7 +38,7 @@ public class MessageSenderApplicationTests {
     @Test
     public void saveUser() {
         PostUser request = new PostUser("user-name");
-        User user = userService.saveUser(request);
+        PostUserResponse user = userService.saveUser(request);
         assertThat(user.getName()).isEqualTo(request.getName());
 
         UsersRecord record = dsl.selectFrom(USERS)
