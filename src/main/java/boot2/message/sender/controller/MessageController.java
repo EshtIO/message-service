@@ -31,7 +31,7 @@ public class MessageController {
 
     @GetMapping(
             path = "/{id}",
-            consumes = MediaType.APPLICATION_JSON_UTF8_VALUE
+            produces = MediaType.APPLICATION_JSON_UTF8_VALUE
     )
     public MessageStatusResponse getMessageStatus(@PathVariable("id") long id) {
         return messageService.getStatus(id);

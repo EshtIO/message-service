@@ -5,6 +5,7 @@ Spring Boot 2 service example with:
 - Maven
 - Postgresql
 - REST-API
+- Swagger-UI
 - FlyWay
 - JOOQ
-- Maven profiling
+- Maven profiling (dev, prod)
