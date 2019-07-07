@@ -37,47 +37,41 @@ public class MessageDaoTest extends DaoTestBase {
 
     @Test
     public void saveMessage() {
-        MessagesRecord insertRecord = new MessagesRecord();
-        insertRecord.setText("message-text");
-        insertRecord.setFromUserId(fromUser.getId());
-        insertRecord.setToUserId(toUser.getId());
-        insertRecord.setStatus(1);
+        MessagesRecord record = new MessagesRecord();
+        record.setText("message-text");
+        record.setFromUserId(fromUser.getId());
+        record.setToUserId(toUser.getId());
+        record.setStatus(1);
 
-        MessagesRecord actual = dao.insert(insertRecord);
+        MessagesRecord actual = dao.insert(record);
         MessagesRecord expected = dsl.selectFrom(MESSAGES)
                 .where(MESSAGES.ID.eq(actual.getId()))
                 .fetchOne();
 
         assertThat(expected).isEqualTo(actual);
 
-        dsl.deleteFrom(MESSAGES).where(MESSAGES.ID.eq(expected.getId())).execute();
+        expected.delete();
     }
 
     @Test
     public void getMessageStatus() {
         int expectedStatus = 2;
 
-        MessagesRecord record = new MessagesRecord();
+        MessagesRecord record = dsl.newRecord(MESSAGES);
         record.setText("text");
         record.setFromUserId(fromUser.getId());
         record.setToUserId(toUser.getId());
         record.setStatus(expectedStatus);
+        record.insert();
 
-        MessagesRecord inserted = dsl.insertInto(MESSAGES)
-                .set(record)
-                .returning()
-                .fetchOne();
+        assertThat(dao.getMessageStatus(record.getId())).isEqualTo(expectedStatus);
 
-        assertThat(dao.getMessageStatus(inserted.getId())).isEqualTo(expectedStatus);
-
-        dsl.deleteFrom(MESSAGES).where(MESSAGES.ID.eq(inserted.getId())).execute();
+        record.delete();
     }
 
     @After
     public void after() {
-        dsl.deleteFrom(USERS)
-                .where(USERS.ID.in(fromUser.getId(), toUser.getId()))
-                .execute();
+        dsl.batchDelete(fromUser, toUser).execute();
     }
 
 }

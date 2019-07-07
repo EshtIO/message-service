@@ -24,7 +24,7 @@ public class UserDaoTest extends DaoTestBase {
                 .fetchOne();
         assertThat(record.getName()).isEqualTo("user-name");
 
-        dsl.deleteFrom(USERS).where(USERS.ID.eq(record.getId())).execute();
+        record.delete();
     }
 
 }
