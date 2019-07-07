@@ -8,7 +8,7 @@ import com.fasterxml.jackson.annotation.JsonValue;
 public enum MessageStatus {
 
     IN_PROGRESS("in-progress"),
-    SUCCESS("success");
+    SENT("sent");
 
     private final String code;
 

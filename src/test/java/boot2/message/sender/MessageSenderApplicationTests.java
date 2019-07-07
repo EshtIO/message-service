@@ -61,7 +61,7 @@ public class MessageSenderApplicationTests {
                 .fetchOne();
 
         String messageText = "message-text";
-        Message message = messageService.saveMessage(
+        PostMessageResponse message = messageService.saveMessage(
                 new PostMessage(fromUser.getId(), toUser.getId(), messageText));
         assertThat(message.getFromUserId()).isEqualTo(fromUser.getId());
         assertThat(message.getToUserId()).isEqualTo(toUser.getId());
@@ -76,4 +76,5 @@ public class MessageSenderApplicationTests {
         assertThat(record.getText()).isEqualTo(messageText);
         assertThat(record.getStatus()).isEqualTo(1);
     }
+
 }

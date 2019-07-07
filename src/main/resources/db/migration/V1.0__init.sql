@@ -17,6 +17,6 @@ CREATE TABLE
         CONSTRAINT fk_from_messages_users FOREIGN KEY (from_user_id) REFERENCES users(id),
         CONSTRAINT fk_to_messages_users FOREIGN KEY (to_user_id) REFERENCES users(id)
 );
-COMMENT ON COLUMN messages.status IS '1 - in progress, 2 - success';
+COMMENT ON COLUMN messages.status IS '1 - in progress, 2 - sent';
 
 CREATE INDEX message_status_idx ON messages(status);

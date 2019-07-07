@@ -1,11 +1,9 @@
 package boot2.message.sender.service;
 
+import boot2.message.sender.dao.UserDao;
 import boot2.message.sender.dto.PostUser;
 import boot2.message.sender.dto.User;
 import boot2.message.sender.jooq.tables.records.UsersRecord;
-import org.jooq.DSLContext;
-
-import static boot2.message.sender.jooq.tables.Users.USERS;
 
 
 /**
@@ -13,20 +11,17 @@ import static boot2.message.sender.jooq.tables.Users.USERS;
  */
 public class UserService {
 
-    private final DSLContext dsl;
+    private final UserDao dao;
 
-    public UserService(DSLContext dsl) {
-        this.dsl = dsl;
+    public UserService(UserDao dao) {
+        this.dao = dao;
     }
 
     public User saveUser(PostUser user) {
         UsersRecord insert = new UsersRecord();
         insert.setName(user.getName());
 
-        UsersRecord inserted = dsl.insertInto(USERS)
-                .set(insert)
-                .returning()
-                .fetchOne();
+        UsersRecord inserted = dao.insert(insert);
 
         return new User(inserted.getId(), inserted.getName());
     }
