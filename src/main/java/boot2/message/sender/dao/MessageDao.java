@@ -26,14 +26,12 @@ public class MessageDao {
     }
 
     public int getMessageStatus(long messageId) {
-        Record1<Integer> record = dsl.select(MESSAGES.STATUS)
+        return dsl.select(MESSAGES.STATUS)
                 .from(MESSAGES)
                 .where(MESSAGES.ID.eq(messageId))
-                .fetchOne();
-        if (record == null) {
-            throw new NotFoundException("Message with id " + messageId + " not found");
-        }
-        return record.value1();
+                .fetchOptional()
+                .map(Record1::value1)
+                .orElseThrow(() -> new NotFoundException("Message with id " + messageId + " not found"));
     }
 
 }
