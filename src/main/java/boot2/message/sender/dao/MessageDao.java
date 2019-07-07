@@ -1,7 +1,9 @@
 package boot2.message.sender.dao;
 
+import boot2.message.sender.exception.NotFoundException;
 import boot2.message.sender.jooq.tables.records.MessagesRecord;
 import org.jooq.DSLContext;
+import org.jooq.Record1;
 
 import static boot2.message.sender.jooq.tables.Messages.MESSAGES;
 
@@ -24,11 +26,14 @@ public class MessageDao {
     }
 
     public int getMessageStatus(long messageId) {
-        return dsl.select(MESSAGES.STATUS)
+        Record1<Integer> record = dsl.select(MESSAGES.STATUS)
                 .from(MESSAGES)
                 .where(MESSAGES.ID.eq(messageId))
-                .fetchOne()
-                .value1();
+                .fetchOne();
+        if (record == null) {
+            throw new NotFoundException("Message with id " + messageId + " not found");
+        }
+        return record.value1();
     }
 
 }
