@@ -1,8 +1,8 @@
 package boot2.message.sender.service;
 
 import boot2.message.sender.dao.UserDao;
-import boot2.message.sender.dto.PostUser;
-import boot2.message.sender.dto.PostUserResponse;
+import boot2.message.sender.dto.user.PostUser;
+import boot2.message.sender.dto.user.PostUserResponse;
 import boot2.message.sender.jooq.tables.records.UsersRecord;
 
 

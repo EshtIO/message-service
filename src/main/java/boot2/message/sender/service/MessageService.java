@@ -1,10 +1,10 @@
 package boot2.message.sender.service;
 
 import boot2.message.sender.dao.MessageDao;
-import boot2.message.sender.dto.MessageStatusResponse;
-import boot2.message.sender.dto.PostMessageResponse;
-import boot2.message.sender.dto.MessageStatus;
-import boot2.message.sender.dto.PostMessage;
+import boot2.message.sender.dto.message.MessageStatusResponse;
+import boot2.message.sender.dto.message.PostMessageResponse;
+import boot2.message.sender.dto.message.MessageStatus;
+import boot2.message.sender.dto.message.PostMessage;
 import boot2.message.sender.jooq.tables.records.MessagesRecord;
 
 /**

@@ -1,4 +1,4 @@
-package boot2.message.sender.dto;
+package boot2.message.sender.dto.message;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;

@@ -1,4 +1,4 @@
-package boot2.message.sender.dto;
+package boot2.message.sender.dto.user;
 
 /**
  * Created by EshtIO on 2019-07-07.

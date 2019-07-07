@@ -1,8 +1,8 @@
 package boot2.message.sender.controller;
 
-import boot2.message.sender.dto.MessageStatusResponse;
-import boot2.message.sender.dto.PostMessageResponse;
-import boot2.message.sender.dto.PostMessage;
+import boot2.message.sender.dto.message.MessageStatusResponse;
+import boot2.message.sender.dto.message.PostMessageResponse;
+import boot2.message.sender.dto.message.PostMessage;
 import boot2.message.sender.service.MessageService;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;

@@ -1,7 +1,7 @@
 package boot2.message.sender.controller;
 
-import boot2.message.sender.dto.PostUser;
-import boot2.message.sender.dto.PostUserResponse;
+import boot2.message.sender.dto.user.PostUser;
+import boot2.message.sender.dto.user.PostUserResponse;
 import boot2.message.sender.service.UserService;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PostMapping;
