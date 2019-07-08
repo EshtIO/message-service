@@ -25,12 +25,12 @@ public class MessageDaoTest extends DaoTestBase {
     @Before
     public void before() {
         fromUser = dsl.insertInto(USERS)
-                .set(new UsersRecord().value2("from-user"))
+                .set(USERS.NAME, "from-user")
                 .returning()
                 .fetchOne();
 
         toUser = dsl.insertInto(USERS)
-                .set(new UsersRecord().value2("to-user"))
+                .set(USERS.NAME, "to-user")
                 .returning()
                 .fetchOne();
     }

@@ -17,12 +17,18 @@ public class UserDaoTest extends DaoTestBase {
 
     @Test
     public void insertRecord() {
-        UsersRecord result = dao.insert(new UsersRecord().value2("user-name"));
+        UsersRecord insert = new UsersRecord();
+        insert.setName("user-name");
+
+        UsersRecord result = dao.insert(insert);
+
+        assertThat(result.getId()).isNotNull();
+        assertThat(result.getName()).isEqualTo(insert.getName());
 
         UsersRecord record = dsl.selectFrom(USERS)
                 .where(USERS.ID.eq(result.getId()))
                 .fetchOne();
-        assertThat(record.getName()).isEqualTo("user-name");
+        assertThat(record.getName()).isEqualTo(insert.getName());
 
         record.delete();
     }
